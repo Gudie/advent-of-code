@@ -10,13 +10,13 @@ fun main() {
                         for (dy in -1..1) {
                             var valid = true
                             for ((index, symbol) in arrayOf('M', 'A', 'S').withIndex()) {
-                                try {
-                                    valid = valid && (arr[x + dx * (index + 1)][y + dy * (index + 1)] == symbol)
+                                valid = try {
+                                    valid && (arr[x + dx * (index + 1)][y + dy * (index + 1)] == symbol)
                                 } catch (e: Exception) {
-                                    valid = false
+                                    false
                                 }
                             }
-                            count = count + if (valid) 1 else 0
+                            count += if (valid) 1 else 0
                         }
                     }
                     count
