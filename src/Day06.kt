@@ -1,19 +1,17 @@
-import kotlin.math.absoluteValue
-
 fun main() {
     fun turnRight(direction: Pair<Int, Int>): Pair<Int, Int> {
-        return when {
-            direction == Pair(1, 0) -> Pair(0, -1)
-            direction == Pair(0, 1) -> Pair(1, 0)
-            direction == Pair(-1, 0) -> Pair(0, 1)
-            direction == Pair(0, -1) -> Pair(-1, 0)
+        return when(direction) {
+            Pair(1, 0) -> Pair(0, -1)
+            Pair(0, 1) -> Pair(1, 0)
+            Pair(-1, 0) -> Pair(0, 1)
+            Pair(0, -1) -> Pair(-1, 0)
             else -> throw (IllegalArgumentException())
         }
     }
 
     fun part1(input: List<String>): Int {
         val lab = input.map { it.toMutableList() }
-        var guard = Pair<Int, Int>(-1, -1)
+        var guard = Pair(-1, -1)
         var direction = Pair(-1, 0)
         lab.mapIndexed { x, row ->
             val y = row.indexOf('^')
@@ -24,7 +22,7 @@ fun main() {
         lab[guard.first][guard.second] = 'X'
         try {
             while (true) {
-                var wannaGo = Pair(guard.first + direction.first, guard.second + direction.second)
+                val wannaGo = Pair(guard.first + direction.first, guard.second + direction.second)
                 if (lab[wannaGo.first][wannaGo.second] == '#') {
                     direction = turnRight(direction)
                 } else {
